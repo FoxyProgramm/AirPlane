@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JItem" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Scripts/items_class.gd" id="1_eeh4c"]
+[ext_resource type="Resource" uid="uid://esjq45fv27n0" path="res://Items/Copper_plate.tres" id="1_xkjrg"]
+[ext_resource type="Texture2D" uid="uid://c3mmc1kkymf11" path="res://Textures/Items/melt_copper.png" id="2_4wlqi"]
+[ext_resource type="Resource" uid="uid://byly2f2tq2mxq" path="res://Items/Copper_long_bar.tres" id="2_pyvf4"]
+
+[resource]
+script = ExtResource("1_eeh4c")
+id = 4
+name = "Melt Copper"
+texture = ExtResource("2_4wlqi")
+description = "This copper, and he is so hot"
+can_melt = false
+can_press_plate = true
+result_press_plate = ExtResource("1_xkjrg")
+can_press_wire = true
+result_press_wire = ExtResource("2_pyvf4")

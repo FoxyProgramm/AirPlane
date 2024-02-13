@@ -14,13 +14,10 @@ func init_machine():
 			machine_obj = collider
 			
 			
-func _start():
-	if !machine_obj.have_item:
-		if Items.items[id_item][3][0] == "press":
-			pass
+func start():
 	await get_tree().create_timer(0.5).timeout
 	if item_count > 0:
-		_start()
+		start()
 
 func _ready():
 	init_machine()

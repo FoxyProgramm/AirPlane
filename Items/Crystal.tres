@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="JItem" load_steps=3 format=3 uid="uid://c2a2maj2s2066"]
+
+[ext_resource type="Script" path="res://Scripts/items_class.gd" id="1_s11rm"]
+[ext_resource type="Texture2D" uid="uid://c8k265upnfby0" path="res://Textures/Items/crystal.png" id="2_eo5to"]
+
+[resource]
+script = ExtResource("1_s11rm")
+id = 3
+name = "Crystal"
+texture = ExtResource("2_eo5to")
+description = "This simple fuel"
+can_melt = false
+can_press_plate = false
+can_press_wire = false
