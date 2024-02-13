@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm0tmxdgk8da"]
+
+[ext_resource type="Script" path="res://Scenes/GMSoundTrack.gd" id="1_2myaw"]
+
+[node name="GMSoundTrack" type="Node"]
+script = ExtResource("1_2myaw")
+
+[node name="player" type="AudioStreamPlayer" parent="."]

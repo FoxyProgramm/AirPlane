@@ -1,0 +1,167 @@
+[gd_scene load_steps=11 format=3 uid="uid://dy0gi1r1sxpcg"]
+
+[ext_resource type="Script" path="res://Scripts/Background2D.gd" id="1_3j2bn"]
+[ext_resource type="Texture2D" uid="uid://jg7y54vulrxd" path="res://Sprites/-3.png" id="2_0q2my"]
+[ext_resource type="PackedScene" uid="uid://cs8gmnty5eckh" path="res://Scenes/player.tscn" id="3_0hmda"]
+[ext_resource type="PackedScene" uid="uid://ki7n3lo5gfsj" path="res://Scenes/turret.tscn" id="4_x0ayt"]
+[ext_resource type="PackedScene" uid="uid://b7xmyck5gmfen" path="res://Scenes/item.tscn" id="5_uvuus"]
+[ext_resource type="PackedScene" uid="uid://cghhauoacbidd" path="res://Scenes/furnace.tscn" id="6_qr54g"]
+[ext_resource type="PackedScene" uid="uid://b8w8rd8vef0cg" path="res://Scenes/press.tscn" id="7_bt6m2"]
+
+[sub_resource type="GDScript" id="GDScript_ov3d1"]
+script/source = "extends Camera2D
+
+var first_grab_pos = Vector2()
+var first_grab = true
+
+@onready var follow_obj = $\"../player\"
+@onready var cam = $\".\"
+
+func _physics_process(delta):
+	cam.global_position = follow_obj.global_position
+	cam.offset = (get_global_mouse_position() - $\".\".global_position) * 0.2
+
+func _input(event):
+	if event.is_action_pressed(\"tz_zoom_in\"):
+		cam.zoom.x = clamp(cam.zoom.x * 0.8, 0.1, 3.0)
+		cam.zoom.y = clamp(cam.zoom.y * 0.8, 0.1, 3.0)
+	elif event.is_action_pressed(\"tz_zoom_out\"):
+		cam.zoom.x = clamp(cam.zoom.x * 1.2, 0.1, 3.0)
+		cam.zoom.y = clamp(cam.zoom.y * 1.2, 0.1, 3.0)
+"
+
+[sub_resource type="GDScript" id="GDScript_8wah2"]
+script/source = "extends Node2D
+
+var item = load(\"res://scenes/item.tscn\")
+
+func _timer():
+	var new_item = item.instantiate()
+	new_item.id = randi() % 2
+	new_item.position = Vector2( randi_range(-200, 200), randi_range(-200, 200) )
+	$\"../items\".add_child(new_item)
+	print($\"../items\".get_child_count())
+	await get_tree().create_timer(0.1).timeout
+	_timer()
+
+func _ready():
+#	_timer()
+	pass
+	
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f1pk8"]
+radius = 6.0
+
+[node name="background" type="Node2D"]
+script = ExtResource("1_3j2bn")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(2500, 1800)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(250, 150)
+texture = ExtResource("2_0q2my")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+
+[node name="player" parent="." instance=ExtResource("3_0hmda")]
+position = Vector2(248, 152)
+
+[node name="turret" parent="." instance=ExtResource("4_x0ayt")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+script = SubResource("GDScript_ov3d1")
+
+[node name="generation" type="Node2D" parent="."]
+script = SubResource("GDScript_8wah2")
+
+[node name="cursor" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cursor"]
+shape = SubResource("CircleShape2D_f1pk8")
+
+[node name="items" type="Node2D" parent="."]
+
+[node name="item" parent="items" instance=ExtResource("5_uvuus")]
+position = Vector2(335, 94)
+mass = 0.49
+
+[node name="item2" parent="items" instance=ExtResource("5_uvuus")]
+position = Vector2(310, 78)
+mass = 0.49
+
+[node name="item3" parent="items" instance=ExtResource("5_uvuus")]
+position = Vector2(291, 64)
+mass = 0.49
+
+[node name="item4" parent="items" instance=ExtResource("5_uvuus")]
+position = Vector2(324, 39)
+mass = 0.49
+
+[node name="item5" parent="items" instance=ExtResource("5_uvuus")]
+position = Vector2(349, 56)
+mass = 0.49
+
+[node name="item6" parent="items" instance=ExtResource("5_uvuus")]
+position = Vector2(377, 16)
+mass = 0.49
+
+[node name="item7" parent="items" instance=ExtResource("5_uvuus")]
+position = Vector2(310, -8)
+mass = 0.49
+
+[node name="item8" parent="items" instance=ExtResource("5_uvuus")]
+position = Vector2(247, 14)
+mass = 0.49
+
+[node name="item9" parent="items" instance=ExtResource("5_uvuus")]
+position = Vector2(200, 38)
+mass = 0.49
+
+[node name="item10" parent="items" instance=ExtResource("5_uvuus")]
+position = Vector2(232, 69)
+mass = 0.49
+id = 1
+
+[node name="item11" parent="items" instance=ExtResource("5_uvuus")]
+position = Vector2(170, 66)
+mass = 0.49
+id = 1
+
+[node name="item12" parent="items" instance=ExtResource("5_uvuus")]
+position = Vector2(149, 98)
+mass = 0.49
+id = 1
+
+[node name="item13" parent="items" instance=ExtResource("5_uvuus")]
+position = Vector2(166, 136)
+mass = 0.49
+id = 1
+
+[node name="item14" parent="items" instance=ExtResource("5_uvuus")]
+position = Vector2(151, 163)
+mass = 0.49
+id = 1
+
+[node name="furnace" parent="." instance=ExtResource("6_qr54g")]
+texture_filter = 1
+position = Vector2(79, -65)
+
+[node name="press" parent="." instance=ExtResource("7_bt6m2")]
+position = Vector2(118, -65)
+
+[connection signal="area_entered" from="cursor" to="." method="_area_enter"]
+[connection signal="area_exited" from="cursor" to="." method="_area_exit"]

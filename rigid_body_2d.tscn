@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://RigidBody2D.gd" id="1_4nu4r"]
+[ext_resource type="Texture2D" uid="uid://bnfwovi07jnaq" path="res://Sprites/locks.png" id="2_eundo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jcas2"]
+size = Vector2(16, 16)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_4nu4r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_eundo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jcas2")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="CollisionShape2D"]
+scale = Vector2(0.655533, 0.592831)

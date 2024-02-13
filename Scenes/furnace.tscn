@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cghhauoacbidd"]
+
+[ext_resource type="Script" path="res://Scripts/furnace.gd" id="1_q85qs"]
+[ext_resource type="Texture2D" uid="uid://mo5n0asviopc" path="res://block_of_crystal.png" id="2_k7jhu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8x75x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0y6gc"]
+
+[node name="furnace" type="StaticBody2D"]
+script = ExtResource("1_q85qs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8x75x")
+
+[node name="image" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_k7jhu")
+
+[node name="furnace" type="Area2D" parent="." groups=["furnace"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="furnace"]
+shape = SubResource("RectangleShape2D_0y6gc")

@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7xmyck5gmfen"]
+
+[ext_resource type="Script" path="res://item.gd" id="1_m2tpr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lacs4"]
+radius = 8.06226
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6cti"]
+size = Vector2(16, 16)
+
+[node name="item" type="RigidBody2D" groups=["item"]]
+inertia = 0.16
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+linear_damp = 0.19
+script = ExtResource("1_m2tpr")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 1
+
+[node name="col" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lacs4")
+
+[node name="touch" type="TouchScreenButton" parent="."]
+shape = SubResource("RectangleShape2D_y6cti")
+
+[node name="handle_cound" type="Marker2D" parent="."]
+
+[node name="count" type="Label" parent="handle_cound"]
+offset_left = -12.0
+offset_right = 53.0
+offset_bottom = 43.0
+scale = Vector2(0.382, 0.382)
+theme_override_font_sizes/font_size = 29
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="touch" to="." method="_press"]
+[connection signal="released" from="touch" to="." method="_release"]
