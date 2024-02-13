@@ -14,10 +14,10 @@ var item_scene = preload("res://scenes/item.tscn")
 #variables for mouse cursor
 var is_handle_item: bool
 var handle_obj: RigidBody2D
-var id_item: int = 0
+var item = null
 var count_item: int = 0
 #inventory
-var inventory_ids: Array[int] = [-1, -1, -1, -1, -1, -1, -1, -1]
+var inventory_res: Array = []
 var inventory_counts: Array[int] = [0, 0, 0, 0, 0, 0, 0, 0]
 
 # Бля, мне тут даже комментировать нечего
@@ -25,7 +25,8 @@ var inventory_counts: Array[int] = [0, 0, 0, 0, 0, 0, 0, 0]
 # TODO: избавиться от вложенности по максимуму 
 
 func _ready():
-	id_item = 0
+	for i in range(8):
+		inventory_res.append(null)
 	init_inventory() # Нахуя это здесь? -- что-бы инвентарб был, ну типа
 	connect("pick_up", _pick_up)
 
@@ -50,19 +51,26 @@ func _process(delta):
 	else :
 		$line.points[1] = Vector2(0, 0)
 
-# Что такое s? items to ass? сделать нормально 
-func _item_to_machine(object, method):
+func item_to_machine(object, method):
 	if object.have_item:
 		return
-	
 	object.have_item = true
-	object.item_id = id_item
+	if method == "_melt":
+		object.item = handle_obj.res.result_of_melt
+	elif method == "_press":
+		if object.mode == 0:
+			object.item = handle_obj.res.result_press_plate
+			print("plate")
+		elif object.mode == 1:
+			object.item = handle_obj.res.result_press_wire
+			print("wire")
+		
 	object.call(method)
 	if count_item == 1:
 		handle_obj.queue_free()
 	else:
 		handle_obj.count -= 1
-		handle_obj._init_count()
+		handle_obj.init_count()
 
 func _input(event):
 	if event.is_action_pressed("tz_inventory"):
@@ -74,13 +82,13 @@ func _input(event):
 			for i in get_tree().current_scene.cursor_collider:
 				var groups = i.get_groups()
 				if ("inventory" in groups) and path_inven.visible:
-					_pick_up(id_item, count_item, int(String(i.get_parent().name)))
+					_pick_up(item, count_item, int(String(i.get_parent().name)))
 					break
-				if ("furnace" in groups) and Items.items[id_item][3][0] == "melt":
-					_item_to_machine(i.get_parent(), "_melt")
+				if ("furnace" in groups) and (handle_obj.res.can_melt):
+					item_to_machine(i.get_parent(), "_melt")
 					break
-				if ("press" in groups) and Items.items[id_item][3][0] == "press":
-					_item_to_machine(i.get_parent(), "_press")
+				if ("press" in groups) and (handle_obj.res.can_press_wire or handle_obj.res.can_press_plane):
+					item_to_machine(i.get_parent(), "_press")
 					break
 				if ("loader" in groups):
 					var machine = i.get_node("../../")
@@ -103,9 +111,9 @@ func _input(event):
 					throw_item(int(String(i.get_parent().name)), 0)
 				break
 
-func create_item(id, count, pos, connect_to_pointer: bool = true):
+func create_item(res, count, pos, connect_to_pointer: bool = true):
 	var inst_item = item_scene.instantiate()
-	inst_item.id = id
+	inst_item._resourse = res
 	inst_item.position = pos
 	inst_item.count = count
 	get_tree().current_scene.get_node("items").add_child(inst_item)
@@ -115,24 +123,25 @@ func create_item(id, count, pos, connect_to_pointer: bool = true):
 #		handle_obj = inst_item
 #		id_item = id
 
-# Трахнуть предмет, серёзно?
-#						0 - one item 1- half of all items 2 - all items
+#					  0 - one item 1- half of all items 2 - all items
 func throw_item(cell, method:int = 0):
-	if inventory_ids[cell] != -1:
+	if inventory_res[cell] == null:
+		return
+	if inventory_res[cell].id != -1:
 		if method == 0:
-			create_item(inventory_ids[cell], 1, get_global_mouse_position())
+			create_item(inventory_res[cell], 1, get_global_mouse_position())
 			inventory_counts[cell] -= 1
 			if inventory_counts[cell] == 0:
-				inventory_ids[cell] = -1
+				inventory_res[cell] = null
 		elif method == 1:
 			var items_to_throw = ceil(inventory_counts[cell]/2.0)
-			create_item(inventory_ids[cell], items_to_throw, get_global_mouse_position())
+			create_item(inventory_res[cell], items_to_throw, get_global_mouse_position())
 			inventory_counts[cell] -= int(items_to_throw)
 			if inventory_counts[cell] == 0:
-				inventory_ids[cell] = -1
+				inventory_res[cell] = null
 		elif method == 2:
-			create_item(inventory_ids[cell], inventory_counts[cell], get_global_mouse_position())
-			inventory_ids[cell] = -1
+			create_item(inventory_res[cell], inventory_counts[cell], get_global_mouse_position())
+			inventory_res[cell] = null
 			inventory_counts[cell] = 0
 	init_inventory()
 
@@ -141,27 +150,33 @@ func take_dammage():
 	print("taken")
 
 func init_inventory():
-	for i in range(inventory_ids.size()):
-		if inventory_ids[i] != -1:
-			var cell = path_inven.get_node(str(i))
-			cell.texture = Items.items[inventory_ids[i]][0]
-			cell.get_node("count").text = str(inventory_counts[i])
-		else :
+	for i in range(inventory_res.size()):
+		if inventory_res[i] == null:
 			path_inven.get_node(str(i) + "/count").text = ""
 			path_inven.get_node(str(i)).texture = null
+			continue
+		if inventory_res[i].id != -1:
+			var cell = path_inven.get_node(str(i))
+			cell.texture = inventory_res[i].texture
+			cell.get_node("count").text = str(inventory_counts[i])
+#		elif inventory_res[i] :
+#			path_inven.get_node(str(i) + "/count").text = ""
+#			path_inven.get_node(str(i)).texture = null
 
 func _pick_up(id, count, cell = -1):
 	if cell == -1:
-		if id in inventory_ids:
-			var place = inventory_ids.find(id, 0)
+		if id in inventory_res:
+			var place = inventory_res.find(id, 0)
 			inventory_counts[place] += count
 		else :
-			if inventory_ids.size() < 8:
-				inventory_ids.append(id)
+			if inventory_res.size() < 8:
+				inventory_res.append(id)
 				inventory_counts.append(count)
 	else :
-		if (inventory_ids[cell] == id) or (inventory_ids[cell] == -1):
-			inventory_ids[cell] = id
+		print("sdf")
+		if (inventory_res[cell] == id) or (inventory_res[cell] == null):
+			print("hi bash")
+			inventory_res[cell] = id
 			inventory_counts[cell] += count
 			handle_obj.queue_free()
 	init_inventory()

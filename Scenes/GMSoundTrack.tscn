@@ -6,3 +6,4 @@
 script = ExtResource("1_pphgx")
 
 [node name="player" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="JItem" load_steps=4 format=3 uid="uid://cynw7uaubyngh"]
+
+[ext_resource type="Script" path="res://Scripts/items_class.gd" id="1_883kn"]
+[ext_resource type="Resource" uid="uid://cp4ymix1nlc4a" path="res://Items/Melt_copper.tres" id="1_l3d7n"]
+[ext_resource type="Texture2D" uid="uid://ch7us57idnoey" path="res://Textures/Items/copper.png" id="2_voi4j"]
+
+[resource]
+script = ExtResource("1_883kn")
+id = 0
+name = "Copper"
+texture = ExtResource("2_voi4j")
+description = "just Material"
+can_melt = true
+result_of_melt = ExtResource("1_l3d7n")
+can_press_plate = false
+can_press_wire = false

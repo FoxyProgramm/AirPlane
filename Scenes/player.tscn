@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtmqtfk5rkkju"]
+[gd_scene load_steps=12 format=3 uid="uid://dacdssjihh18v"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_hqgnv"]
 [ext_resource type="Texture2D" uid="uid://kmvbnwa3b4wd" path="res://icon.svg" id="2_x42as"]
 [ext_resource type="Texture2D" uid="uid://c2gt87kl7ptv5" path="res://Textures/Sprites/player.png" id="3_4dwc7"]
 [ext_resource type="Texture2D" uid="uid://dp6xv2vtkmirk" path="res://Textures/Sprites/inventory_22.png" id="4_72xm1"]
-[ext_resource type="Texture2D" uid="uid://3fgaolkvcpt" path="res://ventilyator.png" id="4_r5w60"]
+[ext_resource type="Texture2D" uid="uid://3fgaolkvcpt" path="res://Textures/Sprites/ventilyator.png" id="5_ym0rt"]
 
 [sub_resource type="Shader" id="Shader_xay5t"]
 code = "/*
@@ -203,11 +203,11 @@ texture = ExtResource("4_72xm1")
 
 [node name="Ventilyator" type="Sprite2D" parent="inventory"]
 position = Vector2(21.0633, -36.6169)
-texture = ExtResource("4_r5w60")
+texture = ExtResource("5_ym0rt")
 
 [node name="Ventilyator2" type="Sprite2D" parent="inventory"]
 position = Vector2(-21.4965, -36.6169)
-texture = ExtResource("4_r5w60")
+texture = ExtResource("5_ym0rt")
 
 [node name="0" type="Sprite2D" parent="inventory"]
 position = Vector2(-21.3029, -36.7031)
