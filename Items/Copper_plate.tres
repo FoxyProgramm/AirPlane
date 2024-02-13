@@ -1,7 +1,8 @@
 [gd_resource type="Resource" script_class="JItem" load_steps=3 format=3 uid="uid://esjq45fv27n0"]
 
-[ext_resource type="Script" path="res://Scripts/items_class.gd" id="1_o6a2c"]
+[ext_resource type="Script" path="res://Scripts/items_resource.gd" id="1_o6a2c"]
 [ext_resource type="Texture2D" uid="uid://cofamef3ysxd4" path="res://Textures/Items/copper_plate.png" id="2_edne5"]
+
 
 [resource]
 script = ExtResource("1_o6a2c")

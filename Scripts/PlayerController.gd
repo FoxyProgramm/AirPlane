@@ -3,31 +3,30 @@ extends CharacterBody2D
 signal pick_up(id)
 
 @onready var cursor = get_tree().current_scene.get_node("cursor")
-@onready var path_inven = $inventory
+@onready var path_to_inventory = $inventory
 @onready var cam = $Camera2D
-
 
 var player_speed: int = 140
 
 # Такое количество переменных об инвентаре говорит о том, что нужно сделать для инвентаря отдельный класс
 var item_scene = preload("res://scenes/item.tscn")
-#variables for mouse cursor
+
+# variables for mouse cursor
 var is_handle_item: bool
 var handle_obj: RigidBody2D
 var item = null
 var count_item: int = 0
-#inventory
-var inventory_res: Array = []
-var inventory_counts: Array[int] = [0, 0, 0, 0, 0, 0, 0, 0]
 
-# Бля, мне тут даже комментировать нечего
+# inventory
+var inventory_res: Array
+var inventory_counts: Array[int]
 
-# TODO: избавиться от вложенности по максимуму 
 
 func _ready():
 	for i in range(8):
 		inventory_res.append(null)
-	init_inventory() # Нахуя это здесь? -- что-бы инвентарб был, ну типа
+		inventory_counts.append(0)
+	init_inventory()
 	connect("pick_up", _pick_up)
 
 func _physics_process(delta):
@@ -43,9 +42,9 @@ func _physics_process(delta):
 				colider.linear_velocity = -col.get_normal() * 60
 
 func _process(delta):
-	path_inven.global_rotation = 0
-	path_inven.global_position = global_position + cam.offset
-	path_inven.scale = Vector2(1, 1) / cam.zoom
+	path_to_inventory.global_rotation = 0
+	path_to_inventory.global_position = global_position + cam.offset
+	path_to_inventory.scale = Vector2(1, 1) / cam.zoom
 	if Input.is_action_pressed("tz_click") and handle_obj != null:
 		$line.points[1] = to_local(handle_obj.global_position)
 	else :
@@ -74,41 +73,50 @@ func item_to_machine(object, method):
 
 func _input(event):
 	if event.is_action_pressed("tz_inventory"):
-		path_inven.visible = !path_inven.visible
-		get_tree().current_scene.is_inventory_open = path_inven.visible
-		
+		path_to_inventory.visible = !path_to_inventory.visible
+		get_tree().current_scene.is_inventory_open = path_to_inventory.visible
+	
 	if event.is_action_released("tz_click"):
-		if is_handle_item:
-			for i in get_tree().current_scene.cursor_collider:
-				var groups = i.get_groups()
-				if ("inventory" in groups) and path_inven.visible:
-					_pick_up(item, count_item, int(String(i.get_parent().name)))
-					break
-				if ("furnace" in groups) and (handle_obj.res.can_melt):
-					item_to_machine(i.get_parent(), "_melt")
-					break
-				if ("press" in groups) and (handle_obj.res.can_press_wire or handle_obj.res.can_press_plane):
-					item_to_machine(i.get_parent(), "_press")
-					break
-				if ("loader" in groups):
-					var machine = i.get_node("../../")
-					machine.init_machine()
-					
-					break
-			is_handle_item = false
-		if handle_obj != null:
-			handle_obj._release()
-			handle_obj = null
+		if not is_handle_item:
+			return
 		
+		if not handle_obj:
+			return
+		
+		for i in get_tree().current_scene.cursor_collider:
+			var groups = i.get_groups()
+			if ("inventory" in groups) and path_to_inventory.visible:
+				_pick_up(item, count_item, int(String(i.get_parent().name)))
+				break
+			if ("furnace" in groups) and (handle_obj.res.can_melt):
+				item_to_machine(i.get_parent(), "_melt")
+				break
+			if ("press" in groups) and (handle_obj.res.can_press_wire or handle_obj.res.can_press_plane):
+				item_to_machine(i.get_parent(), "_press")
+				break
+			if ("loader" in groups):
+				var machine = i.get_node("../../")
+				machine.init_machine()
+				break
+			
+			is_handle_item = false
+		
+		if not handle_obj:
+			return
+		
+		handle_obj._release()
+		handle_obj = null
+	
 	elif event.is_action_pressed("tz_click"):
 		for i in get_tree().current_scene.cursor_collider:
-			if ("inventory" in i.get_groups()) and path_inven.visible:
+			if ("inventory" in i.get_groups()) and path_to_inventory.visible:
 				if Input.is_action_pressed("tz_shift"):
 					throw_item(int(String(i.get_parent().name)), 2)
 				elif Input.is_action_pressed("tz_ctrl"):
 					throw_item(int(String(i.get_parent().name)), 1)
-				else :
+				else:
 					throw_item(int(String(i.get_parent().name)), 0)
+				
 				break
 
 func create_item(res, count, pos, connect_to_pointer: bool = true):
@@ -119,30 +127,30 @@ func create_item(res, count, pos, connect_to_pointer: bool = true):
 	get_tree().current_scene.get_node("items").add_child(inst_item)
 	if connect_to_pointer:
 		inst_item._press(true)
-#		is_handle_item = true
-#		handle_obj = inst_item
-#		id_item = id
 
-#					  0 - one item 1- half of all items 2 - all items
+# 0 - one item, 1 - half of all items, 2 - all items
 func throw_item(cell, method:int = 0):
 	if inventory_res[cell] == null:
 		return
+	
 	if inventory_res[cell].id != -1:
-		if method == 0:
-			create_item(inventory_res[cell], 1, get_global_mouse_position())
-			inventory_counts[cell] -= 1
-			if inventory_counts[cell] == 0:
-				inventory_res[cell] = null
-		elif method == 1:
-			var items_to_throw = ceil(inventory_counts[cell]/2.0)
-			create_item(inventory_res[cell], items_to_throw, get_global_mouse_position())
-			inventory_counts[cell] -= int(items_to_throw)
-			if inventory_counts[cell] == 0:
-				inventory_res[cell] = null
-		elif method == 2:
-			create_item(inventory_res[cell], inventory_counts[cell], get_global_mouse_position())
+		return
+	
+	if method == 0:
+		create_item(inventory_res[cell], 1, get_global_mouse_position())
+		inventory_counts[cell] -= 1
+		if inventory_counts[cell] == 0:
 			inventory_res[cell] = null
-			inventory_counts[cell] = 0
+	elif method == 1:
+		var items_to_throw = ceil(inventory_counts[cell]/2.0)
+		create_item(inventory_res[cell], items_to_throw, get_global_mouse_position())
+		inventory_counts[cell] -= int(items_to_throw)
+		if inventory_counts[cell] == 0:
+			inventory_res[cell] = null
+	elif method == 2:
+		create_item(inventory_res[cell], inventory_counts[cell], get_global_mouse_position())
+		inventory_res[cell] = null
+		inventory_counts[cell] = 0
 	init_inventory()
 
 # Ебануться функция
@@ -152,16 +160,15 @@ func take_dammage():
 func init_inventory():
 	for i in range(inventory_res.size()):
 		if inventory_res[i] == null:
-			path_inven.get_node(str(i) + "/count").text = ""
-			path_inven.get_node(str(i)).texture = null
+			path_to_inventory.get_node("Slot" + str(i) + "/count").text = ""
+			path_to_inventory.get_node("Slot" + str(i) + "/Sprite2D").texture = null
 			continue
+		
 		if inventory_res[i].id != -1:
-			var cell = path_inven.get_node(str(i))
-			cell.texture = inventory_res[i].texture
+			var cell = path_to_inventory.get_node("Slot" + str(i))
+			var cell_sprite = cell.get_node("Sprite2D")
+			cell_sprite.texture = inventory_res[i].texture
 			cell.get_node("count").text = str(inventory_counts[i])
-#		elif inventory_res[i] :
-#			path_inven.get_node(str(i) + "/count").text = ""
-#			path_inven.get_node(str(i)).texture = null
 
 func _pick_up(id, count, cell = -1):
 	if cell == -1:

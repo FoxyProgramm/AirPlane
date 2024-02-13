@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Background2D.gd" id="1_3j2bn"]
 [ext_resource type="Texture2D" uid="uid://jg7y54vulrxd" path="res://Textures/Sprites/-3.png" id="2_awnqw"]
-[ext_resource type="PackedScene" uid="uid://dacdssjihh18v" path="res://Scenes/player.tscn" id="3_0hmda"]
+[ext_resource type="PackedScene" uid="uid://dtmqtfk5rkkju" path="res://Scenes/player.tscn" id="3_0hmda"]
 [ext_resource type="PackedScene" uid="uid://byguaoenx6rpw" path="res://Scenes/turret.tscn" id="4_x0ayt"]
 [ext_resource type="PackedScene" uid="uid://b7xmyck5gmfen" path="res://Scenes/item.tscn" id="5_uvuus"]
 [ext_resource type="Resource" uid="uid://cynw7uaubyngh" path="res://Items/Copper.tres" id="6_oynf5"]
@@ -108,7 +108,7 @@ mass = 0.49
 _resourse = ExtResource("6_oynf5")
 
 [node name="item3" parent="items" instance=ExtResource("5_uvuus")]
-position = Vector2(291, 64)
+position = Vector2(291, 65)
 mass = 0.49
 _resourse = ExtResource("6_oynf5")
 
@@ -140,7 +140,7 @@ _resourse = ExtResource("6_oynf5")
 [node name="item9" parent="items" instance=ExtResource("5_uvuus")]
 position = Vector2(200, 38)
 mass = 0.49
-_resourse = ExtResource("6_oynf5")
+_resourse = ExtResource("7_uwpcy")
 
 [node name="item10" parent="items" instance=ExtResource("5_uvuus")]
 position = Vector2(232, 69)
