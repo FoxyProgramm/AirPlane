@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bluca7nvy8322"
-path="res://.godot/imported/out_arrow.png-7f6cf00f483d05e1a416b4cbe88e7fe6.ctex"
+uid="uid://ddpgk4i2je4g7"
+path="res://.godot/imported/light.png-19b84cda6615d076e59d45a4dc56a57c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://out_arrow.png"
-dest_files=["res://.godot/imported/out_arrow.png-7f6cf00f483d05e1a416b4cbe88e7fe6.ctex"]
+source_file="res://Textures/Sprites/light.png"
+dest_files=["res://.godot/imported/light.png-19b84cda6615d076e59d45a4dc56a57c.ctex"]
 
 [params]
 

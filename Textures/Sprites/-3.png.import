@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhj0wrx0qe21m"
-path="res://.godot/imported/inventory_board.png-e7167b9fad2c5e34a65d69a0f398baf3.ctex"
+uid="uid://jg7y54vulrxd"
+path="res://.godot/imported/-3.png-d452aed7cb3b5bc2a675f3b080cb0745.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://inventory_board.png"
-dest_files=["res://.godot/imported/inventory_board.png-e7167b9fad2c5e34a65d69a0f398baf3.ctex"]
+source_file="res://Textures/Sprites/-3.png"
+dest_files=["res://.godot/imported/-3.png-d452aed7cb3b5bc2a675f3b080cb0745.ctex"]
 
 [params]
 

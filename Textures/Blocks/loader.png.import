@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d08lnmhp0k480"
-path="res://.godot/imported/gun run.png-405900bd9bbf201977d90e4a7d4bf9c7.ctex"
+uid="uid://bmo5g0uf7r4t1"
+path="res://.godot/imported/loader.png-cf038ffec00a45d42e60230b81f3b4ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/gun run.png"
-dest_files=["res://.godot/imported/gun run.png-405900bd9bbf201977d90e4a7d4bf9c7.ctex"]
+source_file="res://Textures/Blocks/loader.png"
+dest_files=["res://.godot/imported/loader.png-cf038ffec00a45d42e60230b81f3b4ca.ctex"]
 
 [params]
 

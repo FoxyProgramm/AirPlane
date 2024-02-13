@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8w8rd8vef0cg"]
+[gd_scene load_steps=8 format=3 uid="uid://d0p1ts5j4jiqt"]
 
 [ext_resource type="Script" path="res://Scripts/press.gd" id="1_42xsh"]
-[ext_resource type="Texture2D" uid="uid://7rgi8q0uucs8" path="res://press.png" id="2_lafu0"]
+[ext_resource type="Texture2D" uid="uid://7rgi8q0uucs8" path="res://Textures/Blocks/press.png" id="2_kaoh6"]
 [ext_resource type="Texture2D" uid="uid://cofamef3ysxd4" path="res://Textures/Items/copper_plate.png" id="3_e11n8"]
 [ext_resource type="Texture2D" uid="uid://27xtu8qeuiyr" path="res://Textures/Items/copper_wire.png" id="4_vafnq"]
 
@@ -20,7 +20,7 @@ shape = SubResource("RectangleShape2D_8x75x")
 [node name="image" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("2_lafu0")
+texture = ExtResource("2_kaoh6")
 
 [node name="press" type="Area2D" parent="." groups=["press"]]
 

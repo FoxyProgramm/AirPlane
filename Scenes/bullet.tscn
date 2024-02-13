@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://duvxye8pwcc1g"]
+[gd_scene load_steps=4 format=3 uid="uid://cgkckarjt4gli"]
 
-[ext_resource type="Texture2D" uid="uid://qynjvvuenrec" path="res://Sprites/collibrre.png" id="1_ivpua"]
+[ext_resource type="Texture2D" uid="uid://qynjvvuenrec" path="res://Textures/Sprites/collibrre.png" id="1_doa2q"]
 
 [sub_resource type="GDScript" id="GDScript_c2x24"]
 script/source = "extends Area2D
@@ -42,7 +42,7 @@ script = SubResource("GDScript_c2x24")
 texture_filter = 1
 position = Vector2(0, -0.5)
 scale = Vector2(1, 0.821429)
-texture = ExtResource("1_ivpua")
+texture = ExtResource("1_doa2q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kqcqy")

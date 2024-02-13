@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ki7n3lo5gfsj"]
+[gd_scene load_steps=6 format=3 uid="uid://byguaoenx6rpw"]
 
 [ext_resource type="Script" path="res://Scripts/turret.gd" id="1_vysi4"]
-[ext_resource type="Texture2D" uid="uid://cr552uucgd2fm" path="res://Sprites/gun run 2.png" id="2_1sufy"]
-[ext_resource type="Texture2D" uid="uid://d08lnmhp0k480" path="res://Sprites/gun run.png" id="3_uyabo"]
-[ext_resource type="Texture2D" uid="uid://b0jyww0qmwl06" path="res://Sprites/gun run body.png" id="4_8i54u"]
+[ext_resource type="Texture2D" uid="uid://cr552uucgd2fm" path="res://Textures/Sprites/gun run 2.png" id="2_l8hwq"]
+[ext_resource type="Texture2D" uid="uid://d08lnmhp0k480" path="res://Textures/Sprites/gun run.png" id="3_frxu1"]
+[ext_resource type="Texture2D" uid="uid://b0jyww0qmwl06" path="res://Textures/Sprites/gun run body.png" id="4_5hml5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aympo"]
 size = Vector2(40, 18)
@@ -19,14 +19,14 @@ shape = SubResource("RectangleShape2D_aympo")
 texture_filter = 1
 position = Vector2(6, 0)
 scale = Vector2(0.76, 0.9)
-texture = ExtResource("2_1sufy")
+texture = ExtResource("2_l8hwq")
 offset = Vector2(15.8455, 0.00868133)
 
 [node name="gun_run" type="Sprite2D" parent="gun_run2"]
 show_behind_parent = true
 texture_filter = 1
 scale = Vector2(1.31579, 1.15854)
-texture = ExtResource("3_uyabo")
+texture = ExtResource("3_frxu1")
 offset = Vector2(42.0439, 0.0428282)
 
 [node name="bull_out" type="Marker2D" parent="gun_run2/gun_run"]
@@ -35,6 +35,6 @@ position = Vector2(58, 0.000201363)
 [node name="gun_run_body" type="Sprite2D" parent="."]
 texture_filter = 1
 rotation = 1.5708
-texture = ExtResource("4_8i54u")
+texture = ExtResource("4_5hml5")
 
 [node name="Timer" type="Timer" parent="."]

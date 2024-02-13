@@ -11,10 +11,12 @@ var player_speed: int = 140
 
 # Такое количество переменных об инвентаре говорит о том, что нужно сделать для инвентаря отдельный класс
 var item_scene = preload("res://scenes/item.tscn")
+#variables for mouse cursor
 var is_handle_item: bool
 var handle_obj: RigidBody2D
 var id_item: int = 0
 var count_item: int = 0
+#inventory
 var inventory_ids: Array[int] = [-1, -1, -1, -1, -1, -1, -1, -1]
 var inventory_counts: Array[int] = [0, 0, 0, 0, 0, 0, 0, 0]
 
@@ -24,7 +26,7 @@ var inventory_counts: Array[int] = [0, 0, 0, 0, 0, 0, 0, 0]
 
 func _ready():
 	id_item = 0
-	_init_inventory() # Нахуя это здесь? -- что-бы инвентарб был, ну типа
+	init_inventory() # Нахуя это здесь? -- что-бы инвентарб был, ну типа
 	connect("pick_up", _pick_up)
 
 func _physics_process(delta):
@@ -80,6 +82,11 @@ func _input(event):
 				if ("press" in groups) and Items.items[id_item][3][0] == "press":
 					_item_to_machine(i.get_parent(), "_press")
 					break
+				if ("loader" in groups):
+					var machine = i.get_node("../../")
+					machine.init_machine()
+					
+					break
 			is_handle_item = false
 		if handle_obj != null:
 			handle_obj._release()
@@ -89,12 +96,14 @@ func _input(event):
 		for i in get_tree().current_scene.cursor_collider:
 			if ("inventory" in i.get_groups()) and path_inven.visible:
 				if Input.is_action_pressed("tz_shift"):
-					_fuck_item(int(String(i.get_parent().name)), true)
+					throw_item(int(String(i.get_parent().name)), 2)
+				elif Input.is_action_pressed("tz_ctrl"):
+					throw_item(int(String(i.get_parent().name)), 1)
 				else :
-					_fuck_item(int(String(i.get_parent().name)))
+					throw_item(int(String(i.get_parent().name)), 0)
 				break
 
-func _create_item(id, count, pos, connect_to_pointer: bool = true):
+func create_item(id, count, pos, connect_to_pointer: bool = true):
 	var inst_item = item_scene.instantiate()
 	inst_item.id = id
 	inst_item.position = pos
@@ -107,24 +116,31 @@ func _create_item(id, count, pos, connect_to_pointer: bool = true):
 #		id_item = id
 
 # Трахнуть предмет, серёзно?
-func _fuck_item(cell, all:bool = false):
+#						0 - one item 1- half of all items 2 - all items
+func throw_item(cell, method:int = 0):
 	if inventory_ids[cell] != -1:
-		if !all:
-			_create_item(inventory_ids[cell], 1, get_global_mouse_position())
+		if method == 0:
+			create_item(inventory_ids[cell], 1, get_global_mouse_position())
 			inventory_counts[cell] -= 1
 			if inventory_counts[cell] == 0:
 				inventory_ids[cell] = -1
-		else:
-			_create_item(inventory_ids[cell], inventory_counts[cell], get_global_mouse_position())
+		elif method == 1:
+			var items_to_throw = ceil(inventory_counts[cell]/2.0)
+			create_item(inventory_ids[cell], items_to_throw, get_global_mouse_position())
+			inventory_counts[cell] -= int(items_to_throw)
+			if inventory_counts[cell] == 0:
+				inventory_ids[cell] = -1
+		elif method == 2:
+			create_item(inventory_ids[cell], inventory_counts[cell], get_global_mouse_position())
 			inventory_ids[cell] = -1
 			inventory_counts[cell] = 0
-	_init_inventory()
+	init_inventory()
 
 # Ебануться функция
 func take_dammage():
 	print("taken")
 
-func _init_inventory():
+func init_inventory():
 	for i in range(inventory_ids.size()):
 		if inventory_ids[i] != -1:
 			var cell = path_inven.get_node(str(i))
@@ -148,4 +164,4 @@ func _pick_up(id, count, cell = -1):
 			inventory_ids[cell] = id
 			inventory_counts[cell] += count
 			handle_obj.queue_free()
-	_init_inventory()
+	init_inventory()

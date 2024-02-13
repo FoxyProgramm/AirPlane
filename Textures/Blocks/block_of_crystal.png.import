@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg1gt78wfokgr"
-path="res://.godot/imported/bg_arrow.png-3d8d06f755cdd7fe5d97755b266e076e.ctex"
+uid="uid://mo5n0asviopc"
+path="res://.godot/imported/block_of_crystal.png-e11e7c804de0128e99b2d199bfbfa32a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bg_arrow.png"
-dest_files=["res://.godot/imported/bg_arrow.png-3d8d06f755cdd7fe5d97755b266e076e.ctex"]
+source_file="res://Textures/Blocks/block_of_crystal.png"
+dest_files=["res://.godot/imported/block_of_crystal.png-e11e7c804de0128e99b2d199bfbfa32a.ctex"]
 
 [params]
 

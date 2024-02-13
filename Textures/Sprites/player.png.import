@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp6xv2vtkmirk"
-path="res://.godot/imported/inventory_22.png-a9269a18c880bce353e9bb342a5df5e8.ctex"
+uid="uid://c2gt87kl7ptv5"
+path="res://.godot/imported/player.png-58644aa37a743b659f510bab377dc310.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://inventory_22.png"
-dest_files=["res://.godot/imported/inventory_22.png-a9269a18c880bce353e9bb342a5df5e8.ctex"]
+source_file="res://Textures/Sprites/player.png"
+dest_files=["res://.godot/imported/player.png-58644aa37a743b659f510bab377dc310.ctex"]
 
 [params]
 

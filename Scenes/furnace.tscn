@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cghhauoacbidd"]
+[gd_scene load_steps=5 format=3 uid="uid://pu7pgkx2nd5b"]
 
 [ext_resource type="Script" path="res://Scripts/furnace.gd" id="1_q85qs"]
-[ext_resource type="Texture2D" uid="uid://mo5n0asviopc" path="res://block_of_crystal.png" id="2_k7jhu"]
+[ext_resource type="Texture2D" uid="uid://mo5n0asviopc" path="res://Textures/Blocks/block_of_crystal.png" id="2_qju7d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8x75x"]
 
@@ -16,7 +16,7 @@ shape = SubResource("RectangleShape2D_8x75x")
 [node name="image" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("2_k7jhu")
+texture = ExtResource("2_qju7d")
 
 [node name="furnace" type="Area2D" parent="." groups=["furnace"]]
 

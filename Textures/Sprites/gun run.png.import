@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qynjvvuenrec"
-path="res://.godot/imported/collibrre.png-a012f131488a40371409554d24a71c93.ctex"
+uid="uid://d08lnmhp0k480"
+path="res://.godot/imported/gun run.png-51d22a39462574f14cf471ab10107f24.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/collibrre.png"
-dest_files=["res://.godot/imported/collibrre.png-a012f131488a40371409554d24a71c93.ctex"]
+source_file="res://Textures/Sprites/gun run.png"
+dest_files=["res://.godot/imported/gun run.png-51d22a39462574f14cf471ab10107f24.ctex"]
 
 [params]
 

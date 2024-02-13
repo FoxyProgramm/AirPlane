@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mo5n0asviopc"
-path="res://.godot/imported/block_of_crystal.png-e86d31bb1ec6de8138aa5134799213c7.ctex"
+uid="uid://qynjvvuenrec"
+path="res://.godot/imported/collibrre.png-e623ad36698577b55b07fe19b90fc3e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://block_of_crystal.png"
-dest_files=["res://.godot/imported/block_of_crystal.png-e86d31bb1ec6de8138aa5134799213c7.ctex"]
+source_file="res://Textures/Sprites/collibrre.png"
+dest_files=["res://.godot/imported/collibrre.png-e623ad36698577b55b07fe19b90fc3e2.ctex"]
 
 [params]
 

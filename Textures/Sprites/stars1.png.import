@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnw2epbt2yvpr"
-path="res://.godot/imported/transparent_cube.png-2af0e0829afed13ebf872128134c7f20.ctex"
+uid="uid://dad8kqyahk3mk"
+path="res://.godot/imported/stars1.png-09836b7d88fde76bbd611442c4ffa2d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://transparent_cube.png"
-dest_files=["res://.godot/imported/transparent_cube.png-2af0e0829afed13ebf872128134c7f20.ctex"]
+source_file="res://Textures/Sprites/stars1.png"
+dest_files=["res://.godot/imported/stars1.png-09836b7d88fde76bbd611442c4ffa2d6.ctex"]
 
 [params]
 

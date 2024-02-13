@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6dql7yhc0vwm"]
+
+[ext_resource type="Texture2D" uid="uid://bmo5g0uf7r4t1" path="res://Textures/Blocks/loader.png" id="1_evhpo"]
+[ext_resource type="Script" path="res://Scripts/loader.gd" id="1_ng5p5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rljkx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qv0d3"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f04v5"]
+
+[node name="Loader" type="StaticBody2D"]
+script = ExtResource("1_ng5p5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rljkx")
+
+[node name="image" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_evhpo")
+
+[node name="handler" type="Marker2D" parent="."]
+position = Vector2(0, -10)
+
+[node name="bg" type="ColorRect" parent="handler"]
+offset_left = -8.0
+offset_top = -19.0
+offset_right = 8.0
+offset_bottom = -3.0
+color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[node name="loader" type="Area2D" parent="handler"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="handler/loader"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_qv0d3")
+
+[node name="ray" type="RayCast2D" parent="."]
+position = Vector2(0, 10)
+target_position = Vector2(0, 10)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+shape = SubResource("RectangleShape2D_f04v5")
+
+[connection signal="pressed" from="TouchScreenButton" to="." method="ch_loader"]

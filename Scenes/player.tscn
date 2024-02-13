@@ -1,9 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cs8gmnty5eckh"]
+[gd_scene load_steps=12 format=3 uid="uid://dtmqtfk5rkkju"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_hqgnv"]
 [ext_resource type="Texture2D" uid="uid://kmvbnwa3b4wd" path="res://icon.svg" id="2_x42as"]
-[ext_resource type="Texture2D" uid="uid://dp6xv2vtkmirk" path="res://inventory_22.png" id="3_6eq8y"]
-[ext_resource type="Texture2D" uid="uid://c2gt87kl7ptv5" path="res://Sprites/player.png" id="3_tgxbv"]
+[ext_resource type="Texture2D" uid="uid://c2gt87kl7ptv5" path="res://Textures/Sprites/player.png" id="3_4dwc7"]
+[ext_resource type="Texture2D" uid="uid://dp6xv2vtkmirk" path="res://Textures/Sprites/inventory_22.png" id="4_72xm1"]
 [ext_resource type="Texture2D" uid="uid://3fgaolkvcpt" path="res://ventilyator.png" id="4_r5w60"]
 
 [sub_resource type="Shader" id="Shader_xay5t"]
@@ -187,7 +187,7 @@ shape = SubResource("CircleShape2D_ddmak")
 [node name="Player2d" type="Sprite2D" parent="."]
 texture_filter = 1
 rotation = 1.5708
-texture = ExtResource("3_tgxbv")
+texture = ExtResource("3_4dwc7")
 offset = Vector2(0, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["shipment_body"]]
@@ -199,7 +199,7 @@ visible = false
 z_index = 10
 texture_filter = 1
 scale = Vector2(0.743496, 0.743496)
-texture = ExtResource("3_6eq8y")
+texture = ExtResource("4_72xm1")
 
 [node name="Ventilyator" type="Sprite2D" parent="inventory"]
 position = Vector2(21.0633, -36.6169)

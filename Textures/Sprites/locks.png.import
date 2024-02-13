@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0jyww0qmwl06"
-path="res://.godot/imported/gun run body.png-06f2308560f29e69d713cc66718e72ed.ctex"
+uid="uid://bnfwovi07jnaq"
+path="res://.godot/imported/locks.png-16fadf05d7f93f96cc378b2932c7d37f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/gun run body.png"
-dest_files=["res://.godot/imported/gun run body.png-06f2308560f29e69d713cc66718e72ed.ctex"]
+source_file="res://Textures/Sprites/locks.png"
+dest_files=["res://.godot/imported/locks.png-16fadf05d7f93f96cc378b2932c7d37f.ctex"]
 
 [params]
 
