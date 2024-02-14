@@ -78,8 +78,7 @@ func init_count():
 func _press(is_required: bool = false):
 	if get_tree().current_scene.is_inventory_open:
 		if not is_required:
-			if get_tree().current_scene.in_inventory:
-				return
+			return
 	
 	z_index = 11 # globals.ITEM_Z_INDEX
 	player.is_handle_item = true

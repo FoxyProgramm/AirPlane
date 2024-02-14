@@ -5,11 +5,12 @@
 
 [resource]
 script = ExtResource("1_27wrb")
-id = 6
 name = "Bronze"
 texture = ExtResource("2_lcx3o")
 description = "just Material"
 can_merge = false
+is_fuel = false
+fuel_value = 0.0
 can_melt = false
 can_press_plate = false
 can_press_wire = false

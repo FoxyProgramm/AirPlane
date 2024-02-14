@@ -7,13 +7,14 @@
 
 [resource]
 script = ExtResource("2_3a302")
-id = 5
 name = "Tin"
 texture = ExtResource("4_j5gty")
 description = "just Material"
 can_merge = true
 merge_with = ExtResource("2_ivhvd")
 merge_result = ExtResource("1_nvc0u")
+is_fuel = false
+fuel_value = 0.0
 can_melt = false
 can_press_plate = false
 can_press_wire = false

@@ -1,5 +1,5 @@
 extends Node
-
+#da
 var cursor_path = "res://cursors/white/"
 var cursors: Array
 var item = load("res://scenes/item.tscn")

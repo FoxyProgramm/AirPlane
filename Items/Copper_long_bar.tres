@@ -3,13 +3,14 @@
 [ext_resource type="Script" path="res://Scripts/items_resource.gd" id="1_vocou"]
 [ext_resource type="Texture2D" uid="uid://27xtu8qeuiyr" path="res://Textures/Items/copper_wire.png" id="2_8nx4q"]
 
-
 [resource]
 script = ExtResource("1_vocou")
-id = 2
 name = "Copper long bar"
 texture = ExtResource("2_8nx4q")
 description = "Long bar from copper"
+can_merge = false
+is_fuel = false
+fuel_value = 0.0
 can_melt = false
 can_press_plate = false
 can_press_wire = false

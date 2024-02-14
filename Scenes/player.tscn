@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtmqtfk5rkkju"]
+[gd_scene load_steps=12 format=3 uid="uid://dtmqtfk5rkkju"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_hqgnv"]
 [ext_resource type="Texture2D" uid="uid://kmvbnwa3b4wd" path="res://icon.svg" id="2_x42as"]
@@ -167,9 +167,6 @@ func _input(event):
 		cam.zoom.y = clamp(cam.zoom.y * 1.2, 0.1, 4.0)
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_630ex"]
-size = Vector2(90, 96)
-
 [node name="player" type="CharacterBody2D" groups=["shipment_body"]]
 script = ExtResource("1_hqgnv")
 
@@ -208,11 +205,6 @@ inventory_cells = Array[NodePath]([NodePath("Slot1"), NodePath("Slot2"), NodePat
 
 [node name="Inventory22" type="Sprite2D" parent="inventory"]
 texture = ExtResource("4_wtiwm")
-
-[node name="inventory_area" type="Area2D" parent="inventory"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory/inventory_area"]
-shape = SubResource("RectangleShape2D_630ex")
 
 [node name="Slot1" parent="inventory" instance=ExtResource("6_0icni")]
 position = Vector2(-21, -36)
