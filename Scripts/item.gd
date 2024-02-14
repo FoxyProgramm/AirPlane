@@ -69,7 +69,7 @@ func _physics_process(delta):
 						init_item()
 						body.queue_free()
 				
-func init_count():
+func init_count():#hosfs
 	if count == 1:
 		$handle_cound/count.text = ""
 	else:
