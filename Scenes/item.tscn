@@ -13,7 +13,7 @@ gravity_scale = 0.0
 inertia = 0.16
 max_contacts_reported = 1
 contact_monitor = true
-linear_damp = 0.19
+linear_damp = 0.25
 script = ExtResource("1_3pjat")
 
 [node name="Icon" type="Sprite2D" parent="."]

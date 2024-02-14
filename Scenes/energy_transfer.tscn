@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://t18kg2g4biy8"]
+
+[ext_resource type="Script" path="res://Scripts/energy_transfer.gd" id="1_77833"]
+[ext_resource type="Texture2D" uid="uid://drn7m7i836tbt" path="res://Textures/Blocks/transfer_energy.png" id="2_4cq7c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2lp5m"]
+size = Vector2(6, 6)
+
+[node name="energy_transfer" type="StaticBody2D"]
+texture_filter = 1
+script = ExtResource("1_77833")
+
+[node name="image" type="Sprite2D" parent="."]
+texture = ExtResource("2_4cq7c")
+
+[node name="col" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2lp5m")
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 1.2
+default_color = Color(0.870588, 0.541176, 0, 1)

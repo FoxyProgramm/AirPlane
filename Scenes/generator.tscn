@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://7b26dokm5bne"]
+
+[ext_resource type="Texture2D" uid="uid://c86wf4oumvqbg" path="res://Textures/Blocks/generator.png" id="1_p8vnb"]
+[ext_resource type="Script" path="res://Scripts/generator.gd" id="1_pgs2c"]
+[ext_resource type="PackedScene" uid="uid://d0clb0cdj1u0n" path="res://Scenes/cell.tscn" id="3_7m5g0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50t2n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovakn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45xst"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ilx5"]
+bg_color = Color(0.54902, 0, 0.278431, 1)
+
+[node name="generator" type="StaticBody2D"]
+texture_filter = 1
+script = ExtResource("1_pgs2c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_50t2n")
+
+[node name="image" type="Sprite2D" parent="."]
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_p8vnb")
+
+[node name="cell" parent="." instance=ExtResource("3_7m5g0")]
+position = Vector2(0, -21)
+bg = true
+
+[node name="button" type="TouchScreenButton" parent="."]
+shape = SubResource("RectangleShape2D_ovakn")
+
+[node name="energy" type="ProgressBar" parent="."]
+offset_top = 10.0
+offset_right = 10.0
+offset_bottom = 14.0
+theme_override_styles/background = SubResource("StyleBoxFlat_45xst")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2ilx5")
+max_value = 8.0
+show_percentage = false
+
+[connection signal="pressed" from="button" to="." method="ch_state"]

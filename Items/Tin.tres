@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="JItem" load_steps=5 format=3 uid="uid://dqy6s7d0ipmrr"]
+
+[ext_resource type="Resource" uid="uid://cwi3gduth13dx" path="res://Items/Bronze.tres" id="1_nvc0u"]
+[ext_resource type="Script" path="res://Scripts/items_resource.gd" id="2_3a302"]
+[ext_resource type="Resource" uid="uid://cynw7uaubyngh" path="res://Items/Copper.tres" id="2_ivhvd"]
+[ext_resource type="Texture2D" uid="uid://dk352hebjn4yf" path="res://Textures/Items/tin.png" id="4_j5gty"]
+
+[resource]
+script = ExtResource("2_3a302")
+name = "Tin"
+texture = ExtResource("4_j5gty")
+description = "just Material"
+can_merge = true
+merge_with = ExtResource("2_ivhvd")
+merge_result = ExtResource("1_nvc0u")
+is_fuel = false
+fuel_value = 0.0
+can_melt = false
+can_press_plate = false
+can_press_wire = false

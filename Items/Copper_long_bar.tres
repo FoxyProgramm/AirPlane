@@ -6,10 +6,12 @@
 
 [resource]
 script = ExtResource("1_vocou")
-id = 2
 name = "Copper long bar"
 texture = ExtResource("2_8nx4q")
 description = "Long bar from copper"
+can_merge = false
+is_fuel = false
+fuel_value = 0.0
 can_melt = false
 can_press_plate = false
 can_press_wire = false

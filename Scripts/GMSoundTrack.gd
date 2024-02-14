@@ -1,7 +1,8 @@
 extends Node
 
 var music = [
-	load("res://space.ogg")
+	load("res://Audio/Music/space.ogg"),
+	load("res://Audio/Music/space_2.ogg")
 ]
 
 func _play(id):
@@ -12,4 +13,4 @@ func _stop():
 	pass
 
 func _ready():
-	_play(0)
+	_play(1)

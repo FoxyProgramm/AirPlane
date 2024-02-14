@@ -6,10 +6,12 @@
 
 [resource]
 script = ExtResource("1_s11rm")
-id = 3
 name = "Crystal"
 texture = ExtResource("2_eo5to")
 description = "This simple fuel"
+can_merge = false
+is_fuel = true
+fuel_value = 1.0
 can_melt = false
 can_press_plate = false
 can_press_wire = false

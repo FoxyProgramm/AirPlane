@@ -6,10 +6,12 @@
 
 [resource]
 script = ExtResource("1_o6a2c")
-id = 1
 name = "Copper Plate"
 texture = ExtResource("2_edne5")
 description = "Super Plate"
+can_merge = false
+is_fuel = false
+fuel_value = 0.0
 can_melt = false
 can_press_plate = false
 can_press_wire = false
