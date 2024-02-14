@@ -1,7 +1,6 @@
 class_name JItem
 extends Resource
 
-#@export var id = -1
 @export var name = ""
 @export var texture = Texture2D
 @export var description = ""

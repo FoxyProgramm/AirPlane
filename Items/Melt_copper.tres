@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c3mmc1kkymf11" path="res://Textures/Items/melt_copper.png" id="2_4wlqi"]
 [ext_resource type="Resource" uid="uid://byly2f2tq2mxq" path="res://Items/Copper_long_bar.tres" id="2_pyvf4"]
 
+
 [resource]
 script = ExtResource("1_eeh4c")
 name = "Melt Copper"

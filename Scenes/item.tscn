@@ -9,8 +9,8 @@ radius = 8.06226
 size = Vector2(16, 16)
 
 [node name="item" type="RigidBody2D" groups=["item"]]
-inertia = 0.16
 gravity_scale = 0.0
+inertia = 0.16
 max_contacts_reported = 1
 contact_monitor = true
 linear_damp = 0.25

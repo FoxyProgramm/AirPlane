@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/items_resource.gd" id="1_s11rm"]
 [ext_resource type="Texture2D" uid="uid://c8k265upnfby0" path="res://Textures/Items/crystal.png" id="2_eo5to"]
 
+
 [resource]
 script = ExtResource("1_s11rm")
 name = "Crystal"

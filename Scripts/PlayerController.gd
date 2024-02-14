@@ -15,6 +15,13 @@ var handle_obj: RigidBody2D
 var item = null
 var count_item: int = 0
 
+func _ready():
+	for i in range(8):
+		inventory_res.append(null)
+		inventory_counts.append(0)
+	init_inventory()
+	connect("pick_up", _pick_up)
+
 func _physics_process(delta):
 	look_at(get_global_mouse_position())
 	var dir = Input.get_vector( "left", "right", "up", "down" )
@@ -61,7 +68,8 @@ func _input(event):
 	if event.is_action_pressed("tz_inventory"):
 		path_to_inventory.visible = !path_to_inventory.visible
 		path_to_inventory.ch_inventory_state()
-		get_tree().current_scene.is_inventory_open = path_to_inventory.visible
+
+#		get_tree().current_scene.is_inventory_open = path_to_inventory.visible
 	
 	if event.is_action_released("tz_click"):
 		if not is_handle_item:

@@ -8,7 +8,7 @@ func _ready():
 	for i in range(5):
 		cursors.append( load(cursor_path + str( i + 1 ) + ".png" ))
 	DisplayServer.cursor_set_custom_image(cursors[randi() % 5], DisplayServer.CURSOR_ARROW, Vector2(16, 16))
-
+  
 func _create_item(res, count, pos, need_this_child: bool = false, attract_to_pointer:bool = false):
 	var new_item = item.instantiate()
 	new_item._resourse = res
