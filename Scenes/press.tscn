@@ -1,21 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0p1ts5j4jiqt"]
+[gd_scene load_steps=10 format=3 uid="uid://d0p1ts5j4jiqt"]
 
 [ext_resource type="Script" path="res://Scripts/press.gd" id="1_42xsh"]
 [ext_resource type="Texture2D" uid="uid://7rgi8q0uucs8" path="res://Textures/Blocks/press.png" id="2_kaoh6"]
 [ext_resource type="Texture2D" uid="uid://cofamef3ysxd4" path="res://Textures/Items/copper_plate.png" id="3_e11n8"]
 [ext_resource type="Texture2D" uid="uid://27xtu8qeuiyr" path="res://Textures/Items/copper_wire.png" id="4_vafnq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8x75x"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpgrt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0y6gc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x03bo"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_goph5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yx874"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lou0o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1m3ra"]
+bg_color = Color(0.54902, 0, 0.278431, 1)
 
 [node name="press" type="StaticBody2D"]
 script = ExtResource("1_42xsh")
 
 [node name="col" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_8x75x")
+shape = SubResource("RectangleShape2D_rpgrt")
 
 [node name="image" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -25,7 +30,7 @@ texture = ExtResource("2_kaoh6")
 [node name="press" type="Area2D" parent="." groups=["press"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="press"]
-shape = SubResource("RectangleShape2D_0y6gc")
+shape = SubResource("RectangleShape2D_x03bo")
 
 [node name="handler" type="Marker2D" parent="."]
 visible = false
@@ -41,7 +46,16 @@ position = Vector2(0, -18)
 texture_normal = ExtResource("4_vafnq")
 
 [node name="pres" type="TouchScreenButton" parent="."]
-shape = SubResource("RectangleShape2D_goph5")
+shape = SubResource("RectangleShape2D_yx874")
+
+[node name="energy" type="ProgressBar" parent="."]
+offset_top = 10.0
+offset_right = 10.0
+offset_bottom = 14.0
+theme_override_styles/background = SubResource("StyleBoxFlat_lou0o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1m3ra")
+max_value = 3.0
+show_percentage = false
 
 [connection signal="pressed" from="handler/0" to="." method="_ch_mode" binds= [0]]
 [connection signal="pressed" from="handler/1" to="." method="_ch_mode" binds= [1]]

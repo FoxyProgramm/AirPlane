@@ -2,11 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://bmo5g0uf7r4t1" path="res://Textures/Blocks/loader.png" id="1_evhpo"]
 [ext_resource type="Script" path="res://Scripts/loader.gd" id="1_ng5p5"]
+[ext_resource type="PackedScene" uid="uid://d0clb0cdj1u0n" path="res://Scenes/cell.tscn" id="3_67jbi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rljkx"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qv0d3"]
-size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f04v5"]
 
@@ -21,24 +19,15 @@ texture_filter = 1
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("1_evhpo")
 
-[node name="handler" type="Marker2D" parent="."]
-position = Vector2(0, -10)
-
-[node name="bg" type="ColorRect" parent="handler"]
-offset_left = -8.0
-offset_top = -19.0
-offset_right = 8.0
-offset_bottom = -3.0
-color = Color(0.192157, 0.192157, 0.192157, 1)
-
-[node name="loader" type="Area2D" parent="handler"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="handler/loader"]
-position = Vector2(0, -11)
-shape = SubResource("RectangleShape2D_qv0d3")
+[node name="cell" parent="." instance=ExtResource("3_67jbi")]
+visible = false
+position = Vector2(0, -21)
+monitorable = false
+bg = true
 
 [node name="ray" type="RayCast2D" parent="."]
-position = Vector2(0, 10)
+position = Vector2(0, 8)
+enabled = false
 target_position = Vector2(0, 10)
 collide_with_areas = true
 collide_with_bodies = false

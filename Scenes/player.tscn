@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dacdssjihh18v"]
+[gd_scene load_steps=13 format=3 uid="uid://dtmqtfk5rkkju"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_hqgnv"]
 [ext_resource type="Texture2D" uid="uid://kmvbnwa3b4wd" path="res://icon.svg" id="2_x42as"]
 [ext_resource type="Texture2D" uid="uid://c2gt87kl7ptv5" path="res://Textures/Sprites/player.png" id="3_4dwc7"]
-[ext_resource type="Texture2D" uid="uid://dp6xv2vtkmirk" path="res://Textures/Sprites/inventory_22.png" id="4_72xm1"]
-[ext_resource type="Texture2D" uid="uid://3fgaolkvcpt" path="res://Textures/Sprites/ventilyator.png" id="5_ym0rt"]
+[ext_resource type="Script" path="res://Scripts/inventory_controller.gd" id="4_7w172"]
+[ext_resource type="Texture2D" uid="uid://dp6xv2vtkmirk" path="res://Textures/Sprites/inventory_22.png" id="4_wtiwm"]
+[ext_resource type="PackedScene" uid="uid://d0clb0cdj1u0n" path="res://Scenes/cell.tscn" id="6_0icni"]
 
 [sub_resource type="Shader" id="Shader_xay5t"]
 code = "/*
@@ -146,9 +147,6 @@ radius = 22.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ry2g"]
 radius = 16.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4acve"]
-size = Vector2(18.0254, 17.8133)
-
 [sub_resource type="GDScript" id="GDScript_ealuc"]
 script/source = "extends Camera2D
 
@@ -168,6 +166,9 @@ func _input(event):
 		cam.zoom.x = clamp(cam.zoom.x * 1.2, 0.1, 4.0)
 		cam.zoom.y = clamp(cam.zoom.y * 1.2, 0.1, 4.0)
 "
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_630ex"]
+size = Vector2(90, 96)
 
 [node name="player" type="CharacterBody2D" groups=["shipment_body"]]
 script = ExtResource("1_hqgnv")
@@ -194,166 +195,45 @@ offset = Vector2(0, -3)
 shape = SubResource("CircleShape2D_7ry2g")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
-[node name="inventory" type="Sprite2D" parent="."]
-visible = false
-z_index = 10
-texture_filter = 1
-scale = Vector2(0.743496, 0.743496)
-texture = ExtResource("4_72xm1")
-
-[node name="Ventilyator" type="Sprite2D" parent="inventory"]
-position = Vector2(21.0633, -36.6169)
-texture = ExtResource("5_ym0rt")
-
-[node name="Ventilyator2" type="Sprite2D" parent="inventory"]
-position = Vector2(-21.4965, -36.6169)
-texture = ExtResource("5_ym0rt")
-
-[node name="0" type="Sprite2D" parent="inventory"]
-position = Vector2(-21.3029, -36.7031)
-
-[node name="count" type="Label" parent="inventory/0"]
-offset_left = 2.28172
-offset_top = -2.39401
-offset_right = 48.2817
-offset_bottom = 55.606
-scale = Vector2(0.271, 0.271)
-theme_override_font_sizes/font_size = 40
-
-[node name="area" type="Area2D" parent="inventory/0" groups=["inventory"]]
-position = Vector2(-6.41406, -3.66516)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory/0/area"]
-position = Vector2(6.70414, 4.20794)
-shape = SubResource("RectangleShape2D_4acve")
-
-[node name="1" type="Sprite2D" parent="inventory"]
-position = Vector2(-30.3871, -12.4785)
-
-[node name="count" type="Label" parent="inventory/1"]
-offset_left = 2.28172
-offset_top = -2.39401
-offset_right = 48.2817
-offset_bottom = 55.606
-scale = Vector2(0.271, 0.271)
-theme_override_font_sizes/font_size = 40
-
-[node name="area" type="Area2D" parent="inventory/1" groups=["inventory"]]
-position = Vector2(-6.41406, -3.66516)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory/1/area"]
-position = Vector2(6.70414, 4.20794)
-shape = SubResource("RectangleShape2D_4acve")
-
-[node name="2" type="Sprite2D" parent="inventory"]
-position = Vector2(-30.3871, 11.5633)
-
-[node name="count" type="Label" parent="inventory/2"]
-offset_left = 2.28172
-offset_top = -2.39401
-offset_right = 48.2817
-offset_bottom = 55.606
-scale = Vector2(0.271, 0.271)
-theme_override_font_sizes/font_size = 40
-
-[node name="area" type="Area2D" parent="inventory/2" groups=["inventory"]]
-position = Vector2(-6.41406, -3.66516)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory/2/area"]
-position = Vector2(6.70414, 4.20794)
-shape = SubResource("RectangleShape2D_4acve")
-
-[node name="3" type="Sprite2D" parent="inventory"]
-position = Vector2(-22.4853, 35.7732)
-
-[node name="count" type="Label" parent="inventory/3"]
-offset_left = 2.28172
-offset_top = -2.39401
-offset_right = 48.2817
-offset_bottom = 55.606
-scale = Vector2(0.271, 0.271)
-theme_override_font_sizes/font_size = 40
-
-[node name="area" type="Area2D" parent="inventory/3" groups=["inventory"]]
-position = Vector2(-6.41406, -3.66516)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory/3/area"]
-position = Vector2(6.70414, 4.20794)
-shape = SubResource("RectangleShape2D_4acve")
-
-[node name="4" type="Sprite2D" parent="inventory"]
-position = Vector2(20.5071, -36.8299)
-
-[node name="count" type="Label" parent="inventory/4"]
-offset_left = 2.28172
-offset_top = -2.39401
-offset_right = 48.2817
-offset_bottom = 55.606
-scale = Vector2(0.271, 0.271)
-theme_override_font_sizes/font_size = 40
-
-[node name="area" type="Area2D" parent="inventory/4" groups=["inventory"]]
-position = Vector2(-6.41406, -3.66516)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory/4/area"]
-position = Vector2(6.70414, 4.20794)
-shape = SubResource("RectangleShape2D_4acve")
-
-[node name="5" type="Sprite2D" parent="inventory"]
-position = Vector2(29.5523, -12.8679)
-
-[node name="count" type="Label" parent="inventory/5"]
-offset_left = 2.28172
-offset_top = -2.39401
-offset_right = 48.2817
-offset_bottom = 55.606
-scale = Vector2(0.271, 0.271)
-theme_override_font_sizes/font_size = 40
-
-[node name="area" type="Area2D" parent="inventory/5" groups=["inventory"]]
-position = Vector2(-6.41406, -3.66516)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory/5/area"]
-position = Vector2(6.70414, 4.20794)
-shape = SubResource("RectangleShape2D_4acve")
-
-[node name="6" type="Sprite2D" parent="inventory"]
-position = Vector2(30.0284, 11.2528)
-
-[node name="count" type="Label" parent="inventory/6"]
-offset_left = 2.28172
-offset_top = -2.39401
-offset_right = 48.2817
-offset_bottom = 55.606
-scale = Vector2(0.271, 0.271)
-theme_override_font_sizes/font_size = 40
-
-[node name="area" type="Area2D" parent="inventory/6" groups=["inventory"]]
-position = Vector2(-6.41406, -3.66516)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory/6/area"]
-position = Vector2(6.70414, 4.20794)
-shape = SubResource("RectangleShape2D_4acve")
-
-[node name="7" type="Sprite2D" parent="inventory"]
-position = Vector2(22.094, 35.6908)
-
-[node name="count" type="Label" parent="inventory/7"]
-offset_left = 2.28172
-offset_top = -2.39401
-offset_right = 48.2817
-offset_bottom = 55.606
-scale = Vector2(0.271, 0.271)
-theme_override_font_sizes/font_size = 40
-
-[node name="area" type="Area2D" parent="inventory/7" groups=["inventory"]]
-position = Vector2(-6.41406, -3.66516)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory/7/area"]
-position = Vector2(6.70414, 4.20794)
-shape = SubResource("RectangleShape2D_4acve")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 script = SubResource("GDScript_ealuc")
+
+[node name="inventory" type="Node2D" parent="."]
+z_index = 11
+texture_filter = 1
+script = ExtResource("4_7w172")
+inventory_cells = Array[NodePath]([NodePath("Slot1"), NodePath("Slot2"), NodePath("Slot3"), NodePath("Slot4"), NodePath("Slot5"), NodePath("Slot6"), NodePath("Slot7"), NodePath("Slot8")])
+
+[node name="Inventory22" type="Sprite2D" parent="inventory"]
+texture = ExtResource("4_wtiwm")
+
+[node name="inventory_area" type="Area2D" parent="inventory"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory/inventory_area"]
+shape = SubResource("RectangleShape2D_630ex")
+
+[node name="Slot1" parent="inventory" instance=ExtResource("6_0icni")]
+position = Vector2(-21, -36)
+
+[node name="Slot2" parent="inventory" instance=ExtResource("6_0icni")]
+position = Vector2(-30, -12)
+
+[node name="Slot3" parent="inventory" instance=ExtResource("6_0icni")]
+position = Vector2(-30, 12)
+
+[node name="Slot4" parent="inventory" instance=ExtResource("6_0icni")]
+position = Vector2(-22, 36)
+
+[node name="Slot5" parent="inventory" instance=ExtResource("6_0icni")]
+position = Vector2(21, -36)
+
+[node name="Slot6" parent="inventory" instance=ExtResource("6_0icni")]
+position = Vector2(30, -12)
+
+[node name="Slot7" parent="inventory" instance=ExtResource("6_0icni")]
+position = Vector2(30, 12)
+
+[node name="Slot8" parent="inventory" instance=ExtResource("6_0icni")]
+position = Vector2(22, 36)
